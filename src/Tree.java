@@ -114,13 +114,23 @@ public class Tree {
 		}
     }
 
-    private void levelOrder(Node no){
-        if(no != null){
-            String dVal = no.value.toString() + " ";
-            preOrder(no.left);
-            System.out.print(dVal);
-            preOrder(no.right);
-		}
+    private void levelOrder(Stack<Node> pilha){
+        if(!pilha.isEmpty()){
+            Stack<Node> nextLevel = new Stack<>();
+            String saida = "";
+            while(!pilha.isEmpty()){
+                Node last = pilha.pop();
+                if(last != null){
+                    saida += last.value.toString() + " ";
+                    nextLevel.push(last.right);
+                    nextLevel.push(last.left);
+                }
+            }
+            if(saida != ""){
+                System.out.println(saida);
+                levelOrder(nextLevel);
+            }
+        }
     }
 
     public void preOrder(){
@@ -139,8 +149,9 @@ public class Tree {
     }
 
     public void levelOrder(){
-        this.levelOrder(this.root);
-        System.out.println("");
+        Stack<Node> pilha = new Stack<>();
+        pilha.push(this.root);
+        this.levelOrder(pilha);
     }
 
     public void itePreOrder(){

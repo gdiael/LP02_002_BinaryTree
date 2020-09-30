@@ -29,7 +29,6 @@ public class Main {
         arv.add(8);
         System.out.println(arv);
         arv.itePreOrder();
-        System.out.println(arv.isComplete());
-        System.out.println(arv.isFull());
+        arv.levelOrder();
     }
 }
