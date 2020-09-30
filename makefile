@@ -1,6 +1,6 @@
 # Arquivo de Script MakeFile
 # Segunda lista de exercícios de LP02
-# https://github.com/gdiael/LP01_014_Livraria.git
+# https://github.com/gdiael/LP02_002_BinaryTree.git
 # - Legenda
 # $@ = nome da regra de compilação
 # $^ = lista de depedências da regra
@@ -35,7 +35,7 @@ clean:
 run:
 	java -cp bin Main
 
-# propriedades para serem usadas ao compilar no windows com o MinGW com gcc e gdb
+# propriedades para serem usadas ao compilar no windows com o MinGW
 # não usar o comando Make e sim o executável: mingw32-make.exe
 
 mkdirswin:

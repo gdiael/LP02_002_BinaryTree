@@ -19,7 +19,17 @@ public class Main {
         }
         System.out.println("");
         System.out.println("Iniciando teste da classe Tree");
-        // Tree arv = new Tree();
-        // System.out.println(arv);
+        Tree arv = new Tree();
+        arv.add(7);
+		arv.add(1);
+		arv.add(9);
+        arv.add(11);
+        System.out.println(arv);
+        arv.itePreOrder();
+        arv.add(8);
+        System.out.println(arv);
+        arv.itePreOrder();
+        System.out.println(arv.isComplete());
+        System.out.println(arv.isFull());
     }
 }

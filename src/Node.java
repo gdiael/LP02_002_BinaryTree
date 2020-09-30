@@ -34,9 +34,9 @@ public class Node{
 
     // imprime este nó e seus filhos
     public String toString(){
-        String val = this.value.toString() + " ";
-        String dStr = "d" + (this.hasRight() ? this.right.toString() : "() ");
-        String eStr = "e" + (this.hasLeft() ? this.left.toString() : "() ");
-        return "(" + val + dStr + eStr + ") ";
+        String val = this.value.toString();
+        String eStr = (this.hasLeft() ? this.left.toString() : "");
+        String dStr = (this.hasRight() ? " " + this.right.toString() : "");
+        return val + "(" + eStr + "," + dStr + ")";
     }
 }

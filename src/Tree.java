@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.Stack;
 
 public class Tree {
     private Node root;
@@ -6,38 +6,37 @@ public class Tree {
     public Tree(){
     }
 
-
-    private Node getNode(Node node, Integer value){
-        if(value.equals(node.value)){
-            return node;
+    private Node getNode(Node no, Integer value){
+        if(value.equals(no.value)){
+            return no;
         }
-        if(value < node.value){
-            if(node.hasLeft()){
-                return getNode(node.left, value);
+        if(value < no.value){
+            if(no.hasLeft()){
+                return getNode(no.left, value);
             } else {
-                return node;
+                return no;
             }
         } else {
-            if(node.hasRight()){
-                return getNode(node.right, value);
+            if(no.hasRight()){
+                return getNode(no.right, value);
             } else {
-                return node;
+                return no;
             }
         }
     }
 
     public boolean add(Integer value){
-        if(root == null){
-            root = new Node(value);
+        if(this.root == null){
+            this.root = new Node(value);
             return true;
         } else {
-            Node node = getNode(root, value);
-            if(!value.equals(node.value)){
-                Node newNode = new Node(value);
-                if(value < node.value){
-                    node.left = newNode;
+            Node no = getNode(root, value);
+            if(!value.equals(no.value)){
+                Node newNo = new Node(value);
+                if(value < no.value){
+                    no.left = newNo;
                 } else {
-                    node.right = newNode;
+                    no.right = newNo;
                 }
                 return true;
             }
@@ -50,7 +49,119 @@ public class Tree {
         return value.equals(no.value);
     }
 
-    
+    private Integer height(Node no){
+		if(no == null){
+			return 0;
+		} else {
+			return 1 + Math.max(
+				height(no.left),
+				height(no.right)
+			);
+		}
+	}
+	
+	public Integer height(){
+		return height(root);
+	}
+
+    private Integer size(Node no){
+        if(no == null){
+            return 0;
+        }
+        return 1 + size(no.right) + size(no.left);
+    }
+
+    public Integer size(){
+        return this.size(this.root);
+    }
+
+    public Boolean isFull(){
+        return false;
+    }
+
+    public Boolean isComplete(){
+        return false;
+    }
+
+    public Boolean isEmpty(){
+        return (this.size() == 0);
+    }
+
+    private void preOrder(Node no){
+		if(no != null){
+            String dVal = no.value.toString() + " ";
+			System.out.print(dVal);
+			preOrder(no.left);
+			preOrder(no.right);
+		}
+    }
+
+    private void posOrder(Node no){
+        if(no != null){
+            String dVal = no.value.toString() + " ";
+            preOrder(no.left);
+            preOrder(no.right);
+            System.out.print(dVal);
+		}
+    }
+
+    private void inOrder(Node no){
+        if(no != null){
+            String dVal = no.value.toString() + " ";
+            preOrder(no.left);
+            System.out.print(dVal);
+            preOrder(no.right);
+		}
+    }
+
+    private void levelOrder(Node no){
+        if(no != null){
+            String dVal = no.value.toString() + " ";
+            preOrder(no.left);
+            System.out.print(dVal);
+            preOrder(no.right);
+		}
+    }
+
+    public void preOrder(){
+        this.preOrder(this.root);
+        System.out.println("");
+    }
+
+    public void posOrder(){
+        this.posOrder(this.root);
+        System.out.println("");
+    }
+
+    public void inOrder(){
+        this.inOrder(this.root);
+        System.out.println("");
+    }
+
+    public void levelOrder(){
+        this.levelOrder(this.root);
+        System.out.println("");
+    }
+
+    public void itePreOrder(){
+        if(this.isEmpty()){
+            return;
+        }
+        String saida = "";
+        Stack<Node> pilha = new Stack<>();
+        pilha.push(this.root);
+		while(!pilha.isEmpty()){
+			Node last = pilha.pop();
+			saida += last.value.toString() + " ";
+			if(last.hasRight()){
+				pilha.push(last.right);
+			}
+			if(last.hasLeft()){
+				pilha.push(last.left);
+			}
+        }
+        System.out.println(saida);
+    }
 
     public String toString(){
         return root.toString();
