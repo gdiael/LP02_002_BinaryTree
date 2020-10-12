@@ -27,6 +27,11 @@ public class Node{
         return this.hasRight() && this.hasLeft();
     }
 
+    // verifica se o nó é estritamente binario (tem 0 ou dois filhos)
+    public Boolean isEstrictBin(){
+        return this.isFull() || this.isLeaf();
+    }
+
     // verifica se o nó está vazio (não tem filhos)
     public Boolean isLeaf(){
         return !this.hasRight() && !this.hasLeft();
